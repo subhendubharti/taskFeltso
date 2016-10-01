@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="FeltSO">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head
+         content must come *after* these tags -->
+    <title>FeltSo</title>
+        <!-- Bootstrap -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/bootstrap-social.css" rel="stylesheet">
+    <link href="styles/mystyles.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+    <style>
+    .fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+    </style>
+    <script>
+document.getElementById("uploadBtn").onchange = function () {
+    document.getElementById("uploadFile").value = (this.value.toString()).substr(this.value.lastIndexOf('\'));
+}</script>
+<body>
+  <input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+<div class="fileUpload btn btn-primary">
+    <span>Upload</span>
+    <input id="uploadBtn" type="file" class="upload" />
+</div>
+<form enctype="multipart/form-data">
+<input id="upload" type=file   accept=".json" name="files[]" size=30>
+</form>
+
+<textarea class="form-control" id="ms_word_filtered_html"></textarea>
+<div id="it"></div>
+
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../bower_components/angular/angular.min.js"></script>
+   <script>
+function handleFileSelect(evt) {
+alert("hi");
+    var files = evt.target.files; // FileList object
+
+    // use the 1st file from the list
+    f = files[0];
+alert(f);
+
+    var reader = new FileReader();
+
+    // Closure to capture the file information.
+    reader.onload = (function(theFile) {
+        return function(e) {
+          alert("Hello");
+alert(e.target.result);
+var data= JSON.parse(e.target.result);
+alert(data["restaurant_name"]);
+          jQuery( '#it' ).html( e.target.result );
+
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsText(f);
+  }
+
+  document.getElementById('upload').addEventListener('change', handleFileSelect, false);
+</script>
+    
+</body>
+
+</html>
