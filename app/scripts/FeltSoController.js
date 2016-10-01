@@ -61,7 +61,7 @@ app.controller('MainController',['$scope',function($scope){
       }
 }
     $scope.prepareCharts= function(data){
-        alert("prepared charts");
+       // alert("prepared charts");
         var dataForSpline=[];
         var posData={};
         var negData={};
@@ -80,7 +80,7 @@ app.controller('MainController',['$scope',function($scope){
             var mon=key.substr(0,key.indexOf('-'));
             var year=year||parseInt(key.substr(key.indexOf('-')+1));
             var intMon=getMonthInteger(mon);
-            alert(intMon+" mon + year="+year);
+            //alert(intMon+" mon + year="+year);
             posData.dataPoints.push({ x: new Date(year,intMon,1),y: data.feltso_gist.time_wise_stats[key].positive_count});
             negData.dataPoints.push({x: new Date(year,intMon,1),y: data.feltso_gist.time_wise_stats[key].negative_count});
             mixData.dataPoints.push({x: new Date(year,intMon,1),y: data.feltso_gist.time_wise_stats[key].mixed_count});
@@ -95,11 +95,11 @@ app.controller('MainController',['$scope',function($scope){
         text: "Sentiment Over Time"
     },
     axisX:{
-        title: "timeline",
+        title: "Month",
         gridThickness: 1
     },
     axisY: {
-        title: "Downloads"
+        title: "Comments"
     },
     data: dataForSpline
            /* [
