@@ -91,6 +91,7 @@ app.controller('MainController',['$scope',function($scope){
         
         var chart = new CanvasJS.Chart("chartContainer",
     {
+             height: 300,
       title:{
         text: "Sentiment Over Time"
     },
@@ -122,6 +123,7 @@ app.controller('MainController',['$scope',function($scope){
     chart.render();
     var chart1 = new CanvasJS.Chart("chartContainer1",
 	 {
+        height: 300,
       title:{
         text: "Overall Stats",
         fontFamily: "Tahoma",
