@@ -97,7 +97,9 @@
 </head>
 <body ng-controller='MainController' ng-init="contentVisible=false">
     <div class="jumbotron" id="uploadPage">
-    <input type=file accept=".json" custom-on-change="uploadFile">
+        <div><h1>FeltSo Reviewer Service</h1></div>
+        <div><h3>Upload the json file to get started.</h3></div>
+    <div><center><h3><input type=file accept=".json" custom-on-change="uploadFile"></h3></center></div>
     </div>
     
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-show="contentVisible">
@@ -199,7 +201,7 @@
             <ul style="margin:0 auto;width:250px;">
                 <li ng-repeat="sample in record.samples.positive_samples" style="text-align:left;">
                 {{sample.sample}}<br>
-                    <strong>{{sample.frequency}}</strong> similar comments
+                   <small><strong>{{sample.frequency}}</strong> similar comments</small> 
                 </li>
             </ul>
             
@@ -208,7 +210,7 @@
            <ul style="margin:0 auto;width:250px;">
                <li ng-repeat="sample in record.samples.negative_samples" style="text-align:left;">
                 {{sample.sample}}<br>
-                    <strong>{{sample.frequency}}</strong> similar comments
+                   <small>  <strong>{{sample.frequency}}</strong> similar comments</small> 
                 </li>
                
                

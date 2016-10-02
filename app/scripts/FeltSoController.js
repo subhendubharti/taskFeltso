@@ -66,15 +66,15 @@ app.controller('MainController',['$scope',function($scope){
         var posData={};
         var negData={};
         var mixData={};
-        posData.type="area";posData.dataPoints=[];
-        negData.type="area";negData.dataPoints=[];
-        mixData.type="area";mixData.dataPoints=[];
+        posData.type="spline";posData.dataPoints=[];
+        negData.type="spline";negData.dataPoints=[];
+        mixData.type="spline";mixData.dataPoints=[];
         var posRevs=data.feltso_gist.overall_stats.positive_count;
         var negRevs=data.feltso_gist.overall_stats.negative_count;
         var mixRevs=data.feltso_gist.overall_stats.mixed_count;
-        var posPer=parseFloat(posRevs/(posRevs+negRevs+mixRevs));
-        var negPer=parseFloat(posRevs/(posRevs+negRevs+mixRevs));
-        var mixPer=parseFloat(posRevs/(posRevs+negRevs+mixRevs));
+        var posPer=parseFloat(100*posRevs/(posRevs+negRevs+mixRevs));
+        var negPer=parseFloat(100*negRevs/(posRevs+negRevs+mixRevs));
+        var mixPer=parseFloat(100*mixRevs/(posRevs+negRevs+mixRevs));
        
         for (var key in data.feltso_gist.time_wise_stats) {
             var mon=key.substr(0,key.indexOf('-'));
@@ -93,7 +93,9 @@ app.controller('MainController',['$scope',function($scope){
     {
              height: 300,
       title:{
-        text: "Sentiment Over Time"
+        text: "Sentiment Over Time",
+          fontFamily: "Tahoma",
+        fontWeight: "normal"
     },
     axisX:{
         title: "Month",
@@ -145,9 +147,9 @@ app.controller('MainController',['$scope',function($scope){
        type: "doughnut",
        showInLegend: true,
        dataPoints: [
-       {  y: posRevs, legendText:"Positive", indexLabel: "Positive" },
-       {  y: negRevs, legendText:"Negative", indexLabel: "Negative" },
-       {  y: mixRevs, legendText:"Mixed", indexLabel: "Mixed" },
+       {  y: posPer, legendText:"Positive", indexLabel: "Positive "+posPer+"%" },
+       {  y: negPer, legendText:"Negative", indexLabel: "Negative "+negPer+"%" },
+       {  y: mixPer, legendText:"Mixed", indexLabel: "Mixed "+mixPer+"%" },
        ]
      }
      ]
